@@ -7,8 +7,9 @@ import { api } from '../services/api';
 import { Option } from '../components/Option';
 import { Header } from "../components/Header";
 import { Loading } from '../components/Loading';
-import { PoolCardPros } from '../components/PoolCard';
-import { PoolHeader } from '../components';
+import { Guesses } from '../components/Guesses';
+import { PoolHeader } from '../components/PoolHeader';
+import { PoolCardPros} from '../components/PoolCard'
 import { EmptyMyPoolList } from '../components/EmptyMyPoolList';
 
 interface RouteParams {
@@ -88,6 +89,8 @@ if(isLoading){
  onPress={() => setOptionSelected('ranking')}
  />
    </HStack>
+
+   <Guesses poolId={poolDetails.code} />
 </VStack>
 
   : <EmptyMyPoolList code={poolDetails.code}/>

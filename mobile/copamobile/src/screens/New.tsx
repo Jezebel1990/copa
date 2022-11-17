@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 
 import { Header } from "../components/Header";
 import { Input } from "../components/Input";
-// import { api } from "../services/api";
+import { api } from "../services/api";
 
 export function New(){
 
@@ -28,7 +28,7 @@ export function New(){
         try {
             setIsLoading(true)
 
-            // await api.post('/pools', { title })
+            await api.post('/pools', { title: title })
 
             toast.show({
                 title: 'Bolão criado com sucesso',
