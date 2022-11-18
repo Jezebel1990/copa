@@ -90,7 +90,7 @@ if(isLoading){
  />
    </HStack>
 
-   <Guesses poolId={poolDetails.code} />
+   <Guesses poolId={poolDetails.id} code={poolDetails.code} />
 </VStack>
 
   : <EmptyMyPoolList code={poolDetails.code}/>

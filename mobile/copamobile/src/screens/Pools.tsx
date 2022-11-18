@@ -1,51 +1,60 @@
-// import { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { VStack, Icon, useToast, FlatList } from "native-base";
 import { Octicons } from '@expo/vector-icons';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
-// import { api } from "../services/api";
+import { api } from "../services/api";
 
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
-// import { Loading } from "../components/Loading";
-// import { PoolCard, PoolCardProps } from "../components/PoolCard";
-// import { EmptyPoolList } from "../components/EmptyPoolList";
+import { Loading } from "../components/Loading";
+import { PoolCard } from "../components/PoolCard";
+import { EmptyPoolList } from "../components/EmptyPoolList";
+import { PoolCardPros } from '../components/PoolCard';
+
 
 export function Pools () {
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [pools, setPools] = useState<PoolCardProps[]>([]);
+    const [pools, setPools] = useState<PoolCardPros[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     
-    // const toast = useToast();
+    const toast = useToast();
     const {navigate} = useNavigation();
 
-    // async function fetchPools() {
-    //     try {
-    //         setIsLoading(true);
+   const fetchPools = useCallback(async () => {
+        try {
+            setIsLoading(true);
 
-            // const response = await api.get('/pools');
-            //console.log(response.data.pools)
-            // setPools(response.data.pools)
-    //     } catch (error) {
-    //         console.log(error)
+            const response = await api.get('/pools');
+            // console.log(response.data.pools)
 
-    //         toast.show({
-    //             title: 'Não foi possível carregar os bolões',
-    //             placement: 'top',
-    //             bgColor: 'red.500'
-    //         })
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // }
+         setPools(response.data.pools);
+        } catch (error) {
+            console.log(error);
 
-    // useFocusEffect(useCallback(() => {
-    //     fetchPools();
-    // }, []))
+         return toast.show({
+                title: 'Não foi possível carregar os bolões',
+                placement: 'top',
+                bgColor: 'red.500',
+            });
+        } finally {
+         setIsLoading(false);
+        }
+    }, [toast]);
+
+    useFocusEffect(
+        useCallback(() => {
+        fetchPools();
+    }, [fetchPools])
+    );
 
     return (
-        <VStack flex={1} bgColor="gray.900">
-            <Header title="Meus Bolões"/>
-            <VStack mt={6} mx={5} borderBottomWidth={1} borderBottomColor="gray.600" p={4} mb={4}>
+    <VStack flex={1} bgColor="gray.900">
+    <Header title="Meus bolões" />
+         
+    <VStack mt={6} mx={5} borderBottomWidth={1}
+     borderBottomColor="gray.600" p={4} mb={4}>
+                
+                
                 <Button 
                     title="BUSCAR BOLÃO POR CÓDIGO"
                     leftIcon={<Icon as={Octicons} name="search" color='black' size='md'></Icon>}
@@ -53,16 +62,16 @@ export function Pools () {
                 />
             </VStack>
 
-        {/* {
-            isLoading ? <Loading /> :
+        {isLoading ? (
+        <Loading />
+         ) : (
             <FlatList 
-                //data={[]}
                 data={pools}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <PoolCard 
                         data={item} 
-                        // onPress={() => navigate('details', { id: item.id })}
+                         onPress={() => navigate('details', { id: item.id })}
                     />
                 )}
                 ListEmptyComponent={() => <EmptyPoolList />}
@@ -70,7 +79,7 @@ export function Pools () {
                 _contentContainerStyle={{ pb: 10 }}
                 px={5}
             />
-        } */}
+       )}
         </VStack>
-    )
+    );
 }
