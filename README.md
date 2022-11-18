@@ -24,7 +24,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   **[PostCSS](https://postcss.org/)**
 -   **[Axios](https://github.com/axios/axios)**
 
-> Veja o arquivo  [package.json](https://github.com/pabloxt14/NLW-Copa/web/package.json)
 
 #### **Server**  ([NodeJS](https://nodejs.org/en/)  +  [TypeScript](https://www.typescriptlang.org/))
 
@@ -33,8 +32,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   **[Short-Unique-Id](https://www.npmjs.com/package/short-unique-id)**
 -   **[Prisma](https://www.prisma.io/)**
 -   **[SQLite](https://github.com/mapbox/node-sqlite3)**
-
-> Veja o arquivo  [package.json](https://github.com/pabloxt14/NLW-Copa/server/package.json)
 
 #### **Mobile**  ([React Native](http://www.reactnative.com/)  +  [TypeScript](https://www.typescriptlang.org/))
  
