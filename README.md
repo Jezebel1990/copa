@@ -15,6 +15,7 @@ Este projeto está dividido em três partes:
 2. Frontend
 3. Mobile
 
+## 🛠 Technologies
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
